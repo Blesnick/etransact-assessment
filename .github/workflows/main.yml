@@ -1,0 +1,27 @@
+name: Cypress Tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'  # Ensure you're using the correct Node.js version
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build          # Optional: if you need to build your project before running tests
+          start: npm start              # Optional: if you need to start a server before running tests
+          command: npm run cy:run:tag:ui  # Run your custom script with the @eTransact tag

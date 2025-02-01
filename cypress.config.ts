@@ -8,6 +8,7 @@ async function setupNodeEvents(
 ): Promise<Cypress.PluginConfigOptions> {
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await addCucumberPreprocessorPlugin(on, config);
+  require("cypress-mochawesome-reporter/plugin")(on);
 
   on(
     "file:preprocessor",
@@ -30,6 +31,15 @@ export default defineConfig({
   videosFolder: "cypress/videos",
   screenshotsFolder: "cypress/screenshots",
   env: {},
+  reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: "Etransact Test Report",
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+    saveJson: true,
+  },
 
   retries: {
     runMode: 2,
