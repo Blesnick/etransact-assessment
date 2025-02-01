@@ -1,6 +1,6 @@
-# Vendease Test Automation
+# Etransact Test Automation
 
-This project contains automated UI and API test cases for Vendease, implemented using Cypress with the Cucumber framework.
+This project contains automated UI and API test cases for Etransact, implemented using Cypress with the Cucumber framework.
 
 ## Table of Contents
 
@@ -45,8 +45,8 @@ Make sure you have the following installed:
 Clone the repository and install the required dependencies:
 
 ```bash
-git clone https://github.com/Blesnick/vendease-test.git
-cd vendease-test
+git clone https://github.com/Blesnick/etransact-assessment.git
+cd Etransact-test
 npm install
 ```
 

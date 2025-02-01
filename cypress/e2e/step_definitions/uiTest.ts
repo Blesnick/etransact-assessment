@@ -1,52 +1,86 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { HomePage, ProductPage } from "../../support/page";
+import { Pages } from "../../support/page";
 interface MyClickOptions extends Cypress.ClickOptions {
   target?: string;
 }
 Given("I visit {string}", (url: string) => {
-  HomePage.visit(url);
+  Pages.visit(url);
 });
 
 When("I click on text {string}", (text: string) => {
-  HomePage.clickElementByText(text);
+  Pages.clickElementByText(text);
 });
 When("I force click on text {string}", (text: string) => {
-  HomePage.clickElementByTextForce(text);
+  Pages.clickElementByTextForce(text);
 });
 
 When("I wait {int} milliseconds", (milliseconds: number) => {
-  HomePage.wait(milliseconds);
+  Pages.wait(milliseconds);
 });
 
-Then(
-  "I should see the Amazon homepage elements (e.g., search bar, logo)",
-  () => {
-    HomePage.validateHomePageElements();
-  }
-);
+Then("I should see the Amazon Pages elements (e.g., search bar, logo)", () => {
+  Pages.validatePagesElements();
+});
 
 When("I click on the selector {string}", (el: string) => {
-  ProductPage.clickElementBySelector(el);
+  Pages.clickElementBySelector(el);
 });
 When("I see selector {string}", (el: string) => {
-  ProductPage.seeSelector(el);
+  Pages.seeSelector(el);
 });
 
 When("I see text {string}", (text: string) => {
-  ProductPage.seeText(text);
+  Pages.seeText(text);
 });
 
 When(
   "I click on the {int} child element {string} that opens in the same tab",
   (elementNumber: number, el: string) => {
-    ProductPage.clickNthChildElement(elementNumber, el, {
+    Pages.clickNthChildElement(elementNumber, el, {
       target: "_self",
     } as MyClickOptions);
   }
 );
+When(
+  "I type {string} into the {string} field",
+  (text: string, selector: string) => {
+    Pages.typeIntoField(selector, text);
+  }
+);
+
+Then(
+  "the {string} field should contain {string}",
+  (selector: string, text: string) => {
+    cy.get(selector).should("have.value", text);
+  }
+);
+
+When(
+  "I select {string} from the {string} dropdown",
+  (value: string, selector: string) => {
+    Pages.selectDropdown(selector, value);
+  }
+);
+
+Then(
+  "the {string} dropdown should have {string} selected",
+  (selector: string, value: string) => {
+    cy.get(selector).should("have.value", value);
+  }
+);
+
 Then(
   "I click on the {int} child selector {string}",
   (elementNumber: number, el: string) => {
-    ProductPage.clickNthChildElement(elementNumber, el);
+    Pages.clickNthChildElement(elementNumber, el);
+  }
+);
+
+When(
+  "I upload a file to the {string} field with file {string}",
+  (selector: string, fileName: string) => {
+    // You can reference a file from the 'fixtures' folder
+    const filePath = `images/${fileName}`; // e.g., 'images/profile-picture.jpg'
+    Pages.uploadFile(selector, filePath); // Uploading the file using the method in Pages class
   }
 );

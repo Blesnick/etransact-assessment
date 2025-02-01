@@ -1,5 +1,5 @@
 @apiTest
-Feature: Test case for Vendease
+Feature: Test case for eTransact
   i want to Create Users (Admin and Player)
 
   Scenario: Create an Admin User

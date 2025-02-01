@@ -1,4 +1,4 @@
-Feature: Test case for Vendease
+Feature: Test case for eTransact
   i want to view the 2nd product details list page on Amazon
 
   @uiTest
