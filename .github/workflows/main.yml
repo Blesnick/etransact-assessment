@@ -22,6 +22,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build          # Optional: if you need to build your project before running tests
-          start: npm start              # Optional: if you need to start a server before running tests
           command: npm run cy:run:tag:ui  # Run your custom script with the @eTransact tag
